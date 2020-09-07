@@ -1,0 +1,22 @@
+{
+  "name": "cfc-gya",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "yarn server-wrapper.js",
+    "server": "env NODE_ENV=development nodemon server-wrapper.js"
+  },
+  "repository": "https://github.com/generalpask/cfc-gya",
+  "author": "Nils Korsfeldt",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "errorhandler": "^1.5.1",
+    "nodemon": "^2.0.4"
+  }
+}
