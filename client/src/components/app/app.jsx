@@ -1,5 +1,6 @@
 import React from 'react';
 import './app.scss';
+import {readCSV} from '../../utils.js';
 import CalcForm from '../calcform/calcform.jsx';
 import ResultBox from '../resultbox/resultbox.jsx';
 
@@ -37,8 +38,11 @@ class App extends React.Component {
     // let reference = aWidth, aHeight & format = bWidth, bHeight
     // Basic math is  :  crop factor = sqrt(aWidth^2 + aHeight^2) / sqrt(bWidth^2 + bHeight^2)
     async compare(reference, format, mm, f) {
-        let rawData = await fetch('/formats');
-        let data = await rawData.json();
+//      let rawData = await fetch('/formats');
+//      let data = await rawData.json();
+
+        let parsedCSV = await readCSV(require('../../formats-modified.csv'));
+        let data = parsedCSV.data;
         
         // Yes I know this is ugly as shit
         let referenceWidth = await data[reference]['Width (mm)'];
@@ -64,8 +68,6 @@ class App extends React.Component {
         });
 
         return this.state;
-
-        //console.log(JSON.stringify(this.state));
     }
 
     render() { 

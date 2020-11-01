@@ -35,7 +35,7 @@ class CalcForm extends React.Component {
 						<div className="inputLabelGroup">
 							<label>Reference format</label>
 					        <Dropdown // See component file for documentation
-					        	dataSource="/formats"
+					        	//dataSource="/formats"
 					        	dataFields={['Type', 'Width (mm)', 'Height (mm)']}
 								optionDataFormat={'`${data[i][dataFields[0]]} (${data[i][dataFields[1]]}mm x ${data[i][dataFields[2]]}mm)`'}
 					        	//optionDataFormat={'data[i][dataFields[0]] + " (" + data[i][dataFields[1]] + "mm x " + data[i][dataFields[2]] + "mm)"'}
@@ -47,7 +47,7 @@ class CalcForm extends React.Component {
 				    	<div className="inputLabelGroup">
 							<label>Format</label>
 					        <Dropdown // See component file for documentation
-					        	dataSource="/formats"
+					        	//dataSource="/formats"
 					        	dataFields={['Type', 'Width (mm)', 'Height (mm)']}
 					        	optionDataFormat={'`${data[i][dataFields[0]]} (${data[i][dataFields[1]]}mm x ${data[i][dataFields[2]]}mm)`'}
 					        	//optionDataFormat={'data[i][dataFields[0]] + " (" + data[i][dataFields[1]] + "mm x " + data[i][dataFields[2]] + "mm)"'}

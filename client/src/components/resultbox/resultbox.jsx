@@ -1,4 +1,5 @@
 import React from 'react';
+import {readCSV} from '../../utils.js';
 
 class ResultBox extends React.Component {
 	constructor(props) {
@@ -22,8 +23,11 @@ class ResultBox extends React.Component {
 	async getResult(result) {
 		this.setState(result);
 
-		let rawData = await fetch('/formats');
-        let data = await rawData.json();
+//  	let rawData = await fetch('/formats');
+//      let data = await rawData.json();
+
+        let parsedCSV = await readCSV(require('../../formats-modified.csv'));
+        let data = parsedCSV.data;
 
         let referenceType = await data[this.state.reference]['Type'];
         let formatType = await data[this.state.format]['Type'];

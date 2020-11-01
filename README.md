@@ -4,7 +4,7 @@
 
 &#9744; Prettify calculator output
 
-&#9744; Add csv parsing to client (removes need for backend api)
+&#9745; Add csv parsing to client (removes need for backend api)
 
 &#9744; Get rid of create-react-app (possibly move to new repo)
 
