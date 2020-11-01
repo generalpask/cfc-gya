@@ -1,5 +1,6 @@
 import React from 'react';
 import {readCSV} from '../../utils.js';
+import './resultbox.scss';
 
 class ResultBox extends React.Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ class ResultBox extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className={this.props.className}>
 				<p>Your {this.state.mm}mm f/{this.state.f} lens on a {this.state.referenceType} sensor will be equivalent to a {this.state.result.resultMm}mm f/{this.state.result.resultF} lens on a {this.state.formatType} sensor, with a crop factor of {this.state.result.cropFactor}.</p>
 				<p>Reference: {this.state.referenceType}</p>
 				<p>Format: {this.state.formatType}</p>

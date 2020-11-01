@@ -22,6 +22,7 @@ class App extends React.Component {
         
         this.handleSubmit = this.handleSubmit.bind(this);
         this.ResultBox = React.createRef();
+        this.ResultWrapper = React.createRef();
     }
 
     handleData = (data) => {
@@ -74,10 +75,10 @@ class App extends React.Component {
                     <h1 className="title">CropFactorCalculator</h1>
                     <div className="box-center">
                         <CalcForm className="calcForm" getData={this.handleData} getSubmit={this.handleSubmit} />
-                        <br />
-                        <p>Result:</p>
-                        <ResultBox className="resultBox" ref={this.ResultBox} state={this.state.result} />
                     </div>
+                </div>
+                <div className={this.state.done ? "result" : "result hidden"} ref={this.resultWrapper}>
+                    <ResultBox className="resultBox" ref={this.ResultBox} state={this.state.result} />
                 </div>
             </>
         );

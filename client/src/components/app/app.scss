@@ -69,3 +69,11 @@
         border: 1px dashed red; // temporary. for my convenience when styling
     }
 }
+
+.result {
+    min-height: 100vh;
+    min-width: 100%;
+}
+.hidden {
+    display: none;
+}
