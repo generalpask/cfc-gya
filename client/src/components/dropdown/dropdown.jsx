@@ -1,5 +1,4 @@
 import React from 'react';
-import Papa from 'papaparse';
 import {readCSV} from '../../utils.js';
 
 class Dropdown extends React.Component {
@@ -9,7 +8,6 @@ class Dropdown extends React.Component {
 		this.state = {
 			dataIsLoaded: false,
 			elementsAreCreated: false,
-			//dataSource: props.dataSource,
 			dataFields: props.dataFields,
 			optionDataFormat: props.optionDataFormat,
 			data: null,
@@ -24,9 +22,6 @@ class Dropdown extends React.Component {
 	}
 	
     async componentDidMount () {
-//		let data = await fetch(this.state.dataSource);
-//		let json = await data.json();
-        
         let parsedCSV = await readCSV(require('../../formats-modified.csv'));
         this.updateData(parsedCSV.data);
 	}
@@ -37,7 +32,6 @@ class Dropdown extends React.Component {
     }
 
 	async createElementsAndPushToArray(data, dataFields, format, array) {
-
 		if (this.state.dataIsLoaded) {
 			for (var i = 0; i < data.length; i++) {
 				this.setState({

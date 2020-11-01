@@ -38,9 +38,6 @@ class App extends React.Component {
     // let reference = aWidth, aHeight & format = bWidth, bHeight
     // Basic math is  :  crop factor = sqrt(aWidth^2 + aHeight^2) / sqrt(bWidth^2 + bHeight^2)
     async compare(reference, format, mm, f) {
-//      let rawData = await fetch('/formats');
-//      let data = await rawData.json();
-
         let parsedCSV = await readCSV(require('../../formats-modified.csv'));
         let data = parsedCSV.data;
         

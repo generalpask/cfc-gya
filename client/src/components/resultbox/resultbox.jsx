@@ -23,9 +23,6 @@ class ResultBox extends React.Component {
 	async getResult(result) {
 		this.setState(result);
 
-//  	let rawData = await fetch('/formats');
-//      let data = await rawData.json();
-
         let parsedCSV = await readCSV(require('../../formats-modified.csv'));
         let data = parsedCSV.data;
 
