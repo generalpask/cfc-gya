@@ -13,3 +13,9 @@
 &#9744; Write a proper readme
 
 &#9744; Make the site look somewhat good
+
+&#9744; Switch from class components to functional components + hooks
+
+&#9744; Switch to typescript
+
+&#9744; Simplify code (?)
