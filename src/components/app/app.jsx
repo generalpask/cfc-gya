@@ -2,7 +2,7 @@ import React from 'react';
 import './app.scss';
 import {readCSV} from '../../utils.js';
 import CalcForm from '../calcform/calcform.jsx';
-import ResultBox from '../resultbox/resultbox.jsx';
+import Result from '../result/result.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -21,8 +21,8 @@ class App extends React.Component {
         };
         
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.ResultBox = React.createRef();
-        this.ResultWrapper = React.createRef();
+        this.Result = React.createRef();
+        this.resultWrapper = React.createRef();
     }
 
     handleData = (data) => {
@@ -31,8 +31,8 @@ class App extends React.Component {
 
     async handleSubmit() {
         const result = await this.compare(this.state.reference, this.state.format, this.state.mm, this.state.f);
-        this.ResultBox.current.getResult(result);
-        window.scrollTo(0, this.ResultWrapper)
+        this.Result.current.getResult(result);
+        window.scrollTo(0, document.body.scrollHeight)
     }                
     
     // Compare reference to format
@@ -77,8 +77,8 @@ class App extends React.Component {
                         <CalcForm className="calcForm" getData={this.handleData} getSubmit={this.handleSubmit} />
                     </div>
                 </div>
-                <div className={this.state.done ? "result" : "result hidden"} ref={this.resultWrapper}>
-                    <ResultBox className="resultBox" ref={this.ResultBox} state={this.state.result} />
+                <div className={this.state.done ? "resultWrapper" : "resultWrapper"} ref={this.resultWrapper}>
+                    <Result className={this.state.done ? "result" : "result"} ref={this.Result} state={this.state.result} />
                 </div>
             </>
         );
