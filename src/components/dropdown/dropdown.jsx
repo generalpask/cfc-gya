@@ -22,7 +22,7 @@ class Dropdown extends React.Component {
 	}
 	
     async componentDidMount () {
-        let parsedCSV = await readCSV(require('../../formats-modified.csv'));
+        let parsedCSV = await readCSV(require('../../formats-modified-minimal.csv'));
         this.updateData(parsedCSV.data);
 	}
 
