@@ -1,0 +1,1 @@
+\frac{ \sqrt{\text{aWidth}^{2} + \text{aHeight}^{2}} }{ \sqrt{\text{bWidth}^{2} + \text{bHeight}^{2}} } = \text{crop factor}
