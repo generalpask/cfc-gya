@@ -43,7 +43,14 @@ client/yarn-error.log*
 cfc-gya.sublime-project
 cfc-gya.sublime-workspace
 
+# Report
+rapport/*.aux
+rapport/*.fdb_latexmk
+rapport/*.fls
+rapport/*.log
+rapport/*.pdf
+rapport/*.synctex.gz
+rapport/*.toc
+
 # misc
-rapport/~$apport.docx
-~WRL0003.tmp
 session.vim
