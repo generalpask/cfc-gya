@@ -17,6 +17,11 @@
     \usepackage[usestackEOL]{stackengine}
     \usepackage[document]{ragged2e}
     \usepackage{microtype}
+    \usepackage{hyperref}
+    \usepackage[countmax]{subfloat}
+
+    \usepackage{graphicx}
+    \graphicspath{ {./img/} }
 
     % Related to math
     \usepackage{amsmath,amssymb,amsfonts,amsthm}
@@ -39,18 +44,37 @@
 
 \begin{abstract}
 \normalsize
+
+% Abstracts in Swedish and English, not sure which one to use so ask Bond
+
+% Swedish
+\iffalse 0
 Denna rapport redogör för framtagandet samt utvecklingen av ett verkyg för att
 räkna ut beskärningsfaktor/förlängningsfaktor för fotografi på olika format.
-Rapporten omfattar vad som ledde till utvecklingen av detta, hur den utfördes,
-samt hur den skulle kunna appliceras i professionella situationer och
-amatörsituationer.\par
-
-Undersökningen har utförts i form av korta samtal med bekanta fotointresserade
-och även icke fotointresserade som har fått verktyget och sammanhanget
-förklarat för sig, och utifrån det har det tagits fram en uppfattning om
-efterfrågan för verktyget.\par
+Rapporten omfattar vad som ledde till utvecklingen av denna, samt hur den skulle
+kunna appliceras i professionella situationer och amatörsituationer. Den jämför
+också verktyget med liknande verktyg som redan finns.\par
 \bigskip
-\textuparrow \ \hl{skriv om till engelska i slutet?}
+
+Undersökningen har utförts i form av intervjuer med bekanta fotointresserade och
+utifrån det har det tagits fram en uppfattning om efterfrågan för verktyget.
+Undersökningen har även kollat på vad verktyget kan erbjuda i jämförelse med
+sina konkurrenter, detta förklaras vidare i sektion 2 och 3.
+\fi
+
+% English
+This report accounts for the development of a tool that is used to calculate
+crop factors when doing cross-format photography. The report covers what led to
+the development of this tool, and how it could be used in professional
+situations as well as amateur ones. It also compares the tool to other similar
+tools that already exist.\par
+\bigskip
+
+The survey has been performed in the form of short discussions with fellow
+individuals interested in photography, and the interest for this tool has been 
+gauged based on that. The analysis has also looked at what the tool can offer
+in comparison to it's "competitors", this is further covered in
+sections 2 and 3.
 
 \end{abstract}
 
@@ -62,13 +86,55 @@ efterfrågan för verktyget.\par
 \clearpage
 
 \section{Inledning}
-\sloppy
 Om du någonsin har använt kameror med olika sensorformat eller filmformat så
-har du troligtvis stött på problemet att konvertera brännvidder och bländare
+har du kanske stött på problemet att konvertera brännvidder och bländare
 mellan dessa, eller, exempelvis, att jämföra ett objektiv på en sensor med
 samma objektiv på en annan sensor som är större eller mindre.\par
-\fussy
 
+Den grundläggande matematiken är som följande:\par
+
+Låt A vara sensorn på referenskameran och B vara sensorn på kameran vi
+räknar för, samt låt W beteckna bredd och H beteckna höjd.
+
+\[
+\frac{ \sqrt{ \text{A}_W^2 + \text{A}_H^2 } }
+     { \sqrt{ \text{B}_W^2 + \text{B}_H^2 } }
+     = \text{beskärningsfaktor} 
+\]
+
+För den som har svårt att läsa det ovanstående så är det grundläggande logisk
+aritmetik med Pythagoras sats i fokus; sammanfattat så räknar vi ut diagonalerna
+på sensorn i vår referenskamera och sensorn i kameran vi ska använda och delar
+sedan dem med varandra. Vi får då ut en faktor, som objektivets brännvidd och
+bländare multipliceras med.\par
+
+Ett exempel:\par
+
+Låt vår referenskamera ha en sensorstorlek på 36x24mm och kameran vi
+ska använda ha en sensorstorlek på 23.7x15.6mm (APS-C). Objektivet vi använder
+har en brännvidd på 50mm och en bländare på f/1.8.
+
+\begin{equation}
+\frac{ \sqrt{36^2 + 24^2 } }
+     { \sqrt{23.7^2 + 15.6^2 } }
+     \approx \frac{43.27}{28.37}
+     \approx 1.53
+\end{equation}
+
+Vår beskärningsfaktor blir alltså ca 1.53, och vi får det följande om vi
+applicerar detta på vårt objektiv (som specificerat ovan).
+
+\begin{equation}
+    50 \cdot 1.53 = 76.5 \ \text{(mm)}
+\end{equation}
+\begin{equation}
+    1.8 \cdot 1.53 \approx \text{(f/)} 2.75
+\end{equation}
+
+Resultatet blir att vårt objektiv, som är ett 50mm f/1.8 på en 36x24mm sensor
+kommer att motsvara ett 76.5mm f/2.75 på en 23.7x15.6mm sensor.
+
+\bigskip
 I detta projekt siktar jag på att lösa detta problem med ett enkelt verktyg som
 låter en jämföra sensorer och brännvidder som förklarat. Jag har valt detta för
 att jag är insatt i fotografi och har haft just det här problemet flera gånger,
@@ -76,17 +142,14 @@ samt för att jag tycker att själva tekniken bakom fotografi och filmografi är
 intressant.\par
 
 \section{Syfte och frågeställningar}
-\hl{Syftet:}\ Syftet med detta arbete är att utreda varför det finns ett behov
-för ett nytt verktyg som räknar ut beskärningsfaktor/förlängningsfaktor, alltså
-...
-
-samt hur detta nya verktyg presterar i jämförelse med de som redan finns
-"på marknaden". Med prestation menas hur funktionellt verktyget är samt hur
-lätt/intuitivt det är att använda.
+Syftet med detta arbete är att utreda varför det finns ett behov
+för ett nytt verktyg som räknar ut beskärningsfaktor/förlängningsfaktor, samt
+hur detta nya verktyg presterar i jämförelse med de som redan finns "på
+marknaden". Med prestation menas hur funktionellt verktyget, hur lätt/intuitivt
+det är att använda, samt hur bra information det ger som output.
 
 Frågeställningen är som följande:\par
 
-\hl{Frågeställning:} 
 \begin{enumerate}
     \item Hur skulle detta verktyg kunna appliceras i professionellt arbete/en
         professionell situation? Det vill säga, hur skulle en professionell
@@ -99,14 +162,13 @@ Frågeställningen är som följande:\par
 
 \section{Material och metod}
 \sloppy
-För att få svar på dessa frågor har det utförts intervjuer med vänner som också
-är fotointresserade. Vännerna i fråga är Jacob Nilsson Lehmusjärvi och Daniel
-Stridh. Båda har tagit examen i estet med fotografisk inriktning från
-NTI-Gymnasiet Stockholm och de anses av författaren vara pålitliga källor med
-väl grundade åsikter och uttalanden i ämnet.\par
+För att få svar på dessa frågor har det utförts intervjuer (läs: Sektion 4.1)
+med vänner som också är fotointresserade. Vännerna i fråga är Jacob Nilsson
+Lehmusjärvi och Daniel Stridh. Båda har tagit examen i estet med fotografisk
+inriktning från NTI-Gymnasiet Stockholm och de anses av författaren vara
+pålitliga källor med väl grundade åsikter och uttalanden i ämnet.\par
 
-De följande frågorna har ställts, och siktar på att ge perspektiv på
-frågeställningen och underlätta med att besvara den.
+De följande frågorna har ställts: 
 \fussy
 
 \begin{itemize}
@@ -115,9 +177,15 @@ frågeställningen och underlätta med att besvara den.
     \item Fråga 3: Skulle du använda detta verktyg om det fanns?
 \end{itemize}
 
-\clearpage
+\bigskip
+
+Utöver detta så har verktyget jämförts med liknande verktyg som redan finns.
+I undersökningen finns skärmbilder av verktygen samt en skriftlig överblick över
+vilken funktionalitet som till synes finns tillgänglig för respektive verktyg.
 
 \section{Undersökning och resultat}
+\subsection{Intervjuer}
+\subsubsection{Intervjuer - frågor och svar}
 \textbf{Vilken roll spelar fotografi i ditt vardagsliv?}\par
 
 Jacob: ”Numera inte så mycket, men förr; jättemycket. Jag tar dock några bilder
@@ -134,7 +202,7 @@ foto är fortfarande för mig en viktig hobby.”\par
 Jacob: ”Nej, men det bygger på att jag inte brukar använda exempelvis spegellös
 digitalkamera när jag fotar. Dock en tid funderade jag på att skaffa en sådan
 just på grund av att man kan använda äldre objektiv på den, eftersom jag redan
-har flera. På grund av ekonomiska faktorn köpte jag inte en.”\par
+har flera. På grund av den ekonomiska faktorn köpte jag inte en.”\par
 
 \sloppy
 Daniel: ”Jag har faktiskt köpt ett 50-220mm objektiv till min digitalkamera, men
@@ -152,12 +220,13 @@ med mina gamla objektiv.”\par
 Daniel: ”När mitt objektiv kommer fram så kommer jag nog att använda det, ja.”
 \par
 
-\bigskip
+
+\subsubsection{Sammanfattning}
 \sloppy
-Resultatet av undersökningen är att Jacob har ett tydligt fotointresse och var
-ett tag inne på att köpa en spegellös digitalkamera som han skulle kunna sätta
-sina äldre objektiv på. Han säger att om han hade gjort det så skulle verktyget
-komma till användning.\par
+Jacob har ett tydligt fotointresse och fotar ibland med analoga kameror, men
+annars oftas med mobilen. Han var ett tag inne på att köpa en spegellös
+digitalkamera som han skulle kunna sätta sina äldre objektiv på. Han säger att
+om han hade gjort det så skulle verktyget komma till användning.\par
 
 Daniel har ett likvärdigt fotointresse och fotar ibland på evenemang som press.
 Han har köpt ett nytt objektiv till sin digitalkamera som passar ett annat
@@ -166,7 +235,58 @@ Han säger att när hans objektiv kommer fram så kommer han nog[sic] att använ
 verktyget. \par
 \fussy
 
+\subsection{Jämförelse med liknande verktyg}
+\subsubsection{Skärmdumpar}
+\renewcommand{\figurename}{Fig.}
+
+\begin{subfigures}
+
+\begin{figure}[!htb]
+\caption{CropFactorCalculator, input}
+\includegraphics[width=\textwidth]{cfc-in}
+\end{figure}
+
+\begin{figure}[!htb]
+\caption{CropFactorCalculator, exempel på output}
+\includegraphics[width=\textwidth]{cfc-out}
+\end{figure}
+
+\end{subfigures}
+
+\begin{subfigures}
+
+\begin{figure}[!htb]
+\caption{CropFactorCalculator}
+\includegraphics[width=\textwidth]{mmcalc-in}
+\end{figure}
+
+\begin{figure}[!ht]
+\caption{CropFactorCalculator}
+\includegraphics[width=\textwidth]{mmcalc-out}
+\end{figure}
+
+\end{subfigures}
+
+\clearpage
+
+\subsubsection{Sammanfattning}
+\sloppy
+I figur 1a, som visar input-formuläret för \emph{CropFactorCalculator}, kan vi
+se att det finns fält för referensformat ("Reference format"), format
+("Format"), brännvidd ("Focal length"), och bländare ("Aperture"). I figur 1b,
+som visar exempel på output från \emph{CropFactorCalculator}, kan vi se att man
+får information om referensformat, format och resulterande bränndvidd respektive
+bländartal.\par
+
+I figur 2a, som visar input-formuläret för \emph{mmCalc}, kan vi se att det
+finns fält för format ("Sensor size"), brännvidd ("mm"), och bländare
+("Aperture"). I figur 2b, som visar exempel på output från \emph{mmCalc}, kan vi
+se att man får information om objektivet, format samt resulterande brännvidd
+respektive bländartal.\par
+\fussy
+
 \section{Analys och diskussion}
+\subsection{Allmän analys/diskussion}
 \sloppy
 Intervjuobjekten har ett vardagligt intresse för fotografi, både som hobby och
 mer professionellt. De har därför varit relevanta att fråga för att de har
@@ -190,6 +310,7 @@ en kamera och försöka lista ut vilken brännvidd och bländare man kommer få.
 Att göra detta manuellt med en miniräknare är ett grovgöra, och en räknare
 underlättar massivt.\par
 
+\subsection{Fördelar och nackdelar}
 Det finns en "konkurrent" till mitt verktyg som jag känner till, och det är
 \emph{mmCalc}.\footnote{mmcalc.com} Jag brukade använda \emph{mmCalc} tills
 jag kände att den inte räckte för mina behov längre. Detta leder oss till den
@@ -201,9 +322,13 @@ För att förenkla; det enda som kan räknas ut på \emph{mmCalc} är
 35mm-motsvarigheten till ens objektiv. På mitt verktyg går det däremot att välja
 vilket referensformat som helst, så om du exempelvis ska använda ett objektiv
 för 35mm-sensorer på en kamera med en APS-sensor så går det utan problem att
-räkna på. En annan, mindre fördel är att det steglöst går att steglöst
+räkna på. \par
+En annan, mindre fördel är att det steglöst går att steglöst
 specificera bländartal. På \emph{mmCalc} finns det endast ett fast antal
-bländartal att välja på, mellan f/0.7 och f/32.\par
+bländartal att välja på, mellan f/0.7 och f/32. En slutgiltig, mindre fördel
+som även är en nödvändig funktion med tanke på att verktyget är mer avancerat
+är att man i output-fönstret får mer information om uträkningen man har gjort.
+\par
 
 En nackdel, dock, är att det inte går att välja telekonverter eller 
 vidvinkelkonverter i mitt verktyg. Dessa innebär ett tillbehör som skruvas
@@ -219,6 +344,10 @@ language}\par
 \bigskip
 \bigskip
 \bigskip
+
+% Notes
+\fbox{%
+\parbox{400pt}{
 
 \hl{Anteckningar, ignorera:}\par
 \title{Problem}
@@ -239,4 +368,6 @@ language}\par
     \1 Fixa inledningen *
 \end{outline}
 
+}%
+}
 \end{document}
