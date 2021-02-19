@@ -3,22 +3,23 @@
         CropFactorCalculator\\
         \large En räknare för fotografer}
     \author{Nils Korsfeldt}
-    \date{February 2021}
+    \date{Februari 2021}
 
     % General document formatting
     \usepackage[english]{babel}
     \usepackage[margin=1in]{geometry}
     \usepackage[parfill]{parskip}
     \usepackage[utf8]{inputenc}
+
     \usepackage[usestackEOL]{stackengine}
     \usepackage{outlines}
-    \usepackage{blindtext, color, soul}
-    
+    \usepackage{blindtext, color, soulutf8}
+    \usepackage[usestackEOL]{stackengine}
+    \usepackage[document]{ragged2e}
+    \usepackage{microtype}
+
     % Related to math
     \usepackage{amsmath,amssymb,amsfonts,amsthm}
-
-    % Other stuff
-%    \usepackage{blindtext}
 
 \begin{document}
 
@@ -33,12 +34,21 @@
     Handledare: Bondhon Shahriar Alam
 }\par
 }
+
 \clearpage
 
 \begin{abstract}
 \normalsize
-Denna rapport redogör för framtagandet samt utvecklingen av ett verkyg för att räkna ut beskärningsfaktor/förlängningsfaktor för fotografi på olika format. Rapporten omfattar vad som ledde till utvecklingen av detta, hur den utfördes, samt hur den skulle kunna appliceras i professionella situationer och amatörsituationer.\\ \\*
-Undersökningen har utförts i form av korta samtal med bekanta fotointresserade och även icke fotointresserade som har fått verktyget och sammanhanget förklarat för sig, och utifrån det har det tagits fram en uppfattning om efterfrågan för verktyget. \par
+Denna rapport redogör för framtagandet samt utvecklingen av ett verkyg för att
+räkna ut beskärningsfaktor/förlängningsfaktor för fotografi på olika format.
+Rapporten omfattar vad som ledde till utvecklingen av detta, hur den utfördes,
+samt hur den skulle kunna appliceras i professionella situationer och
+amatörsituationer.\par
+
+Undersökningen har utförts i form av korta samtal med bekanta fotointresserade
+och även icke fotointresserade som har fått verktyget och sammanhanget
+förklarat för sig, och utifrån det har det tagits fram en uppfattning om
+efterfrågan för verktyget.\par
 \bigskip
 \textuparrow \ \hl{skriv om till engelska i slutet?}
 
@@ -52,40 +62,165 @@ Undersökningen har utförts i form av korta samtal med bekanta fotointresserade
 \clearpage
 
 \section{Inledning}
-Om du någonsin har använt kameror med olika sensorformat eller filmformat så har du troligtvis stött på problemet att konvertera brännvidder och bländare mellan dessa, eller, exempelvis, att jämföra ett objektiv på en sensor med samma objektiv på en annan sensor som är större eller mindre. I detta projekt siktar jag på att lösa detta problem med ett enkelt verktyg som låter en jämföra sensorer och brännvidder som förklarat. Jag har valt detta för att jag är insatt i fotografi och har haft just det här problemet flera gånger. Jag tycker att det är ett intressant ämne för att det finns mycket matte och fysik bakom det, samt för att själva tekniken bakom fotografi och filmografi är intressant. \par
+\sloppy
+Om du någonsin har använt kameror med olika sensorformat eller filmformat så
+har du troligtvis stött på problemet att konvertera brännvidder och bländare
+mellan dessa, eller, exempelvis, att jämföra ett objektiv på en sensor med
+samma objektiv på en annan sensor som är större eller mindre.\par
+\fussy
+
+I detta projekt siktar jag på att lösa detta problem med ett enkelt verktyg som
+låter en jämföra sensorer och brännvidder som förklarat. Jag har valt detta för
+att jag är insatt i fotografi och har haft just det här problemet flera gånger,
+samt för att jag tycker att själva tekniken bakom fotografi och filmografi är
+intressant.\par
 
 \section{Syfte och frågeställningar}
-\hl{Syftet:}Syftet med detta arbete är att utreda hur ett verktyg för att beräkna beskärningsfaktor eller förlängningsfaktor skulle tas fram samt varför det finns ett behov för ett sådant verktyg. \par 
-Frågeställningen är som följande: 
+\hl{Syftet:}\ Syftet med detta arbete är att utreda varför det finns ett behov
+för ett nytt verktyg som räknar ut beskärningsfaktor/förlängningsfaktor, alltså
+...
 
-% \hl{Frågeställning:} \
+samt hur detta nya verktyg presterar i jämförelse med de som redan finns
+"på marknaden". Med prestation menas hur funktionellt verktyget är samt hur
+lätt/intuitivt det är att använda.
+
+Frågeställningen är som följande:\par
+
+\hl{Frågeställning:} 
 \begin{enumerate}
-    \item Hur skulle detta verktyg kunna appliceras i professionellt arbete/en professionell situation?
-    \item Vad uppmanade utvecklingen av detta verktyg och hur skiljer verktyget sig från sina konkurrenter?
+    \item Hur skulle detta verktyg kunna appliceras i professionellt arbete/en
+        professionell situation? Det vill säga, hur skulle en professionell
+        fotograf eller fotostudio kunna använda detta verktyg i sitt
+        arbetsflöde?
+    \item Vad uppmanade utvecklingen av detta verktyg och hur skiljer verktyget
+        sig från sina konkurrenter? Orsak bakom framtagandet, fördelar och
+        nackdelar gentemot liknande verktyg.
 \end{enumerate}
 
 \section{Material och metod}
-För att få svar på dessa frågor har jag utfört intervjuer med vänner som också är fotointresserade. Vännerna i fråga är Jacob Nilsson Lehmusjärvi och Daniel Stridh. Båda gick tidigare estet med fotografisk inriktning på NTI-Gymnasiet Stockholm och jag anser dem vara pålitliga källor med väl grundade åsikter och uttalanden i ämnet. \par
+\sloppy
+För att få svar på dessa frågor har det utförts intervjuer med vänner som också
+är fotointresserade. Vännerna i fråga är Jacob Nilsson Lehmusjärvi och Daniel
+Stridh. Båda har tagit examen i estet med fotografisk inriktning från
+NTI-Gymnasiet Stockholm och de anses av författaren vara pålitliga källor med
+väl grundade åsikter och uttalanden i ämnet.\par
+
+De följande frågorna har ställts, och siktar på att ge perspektiv på
+frågeställningen och underlätta med att besvara den.
+\fussy
+
 \begin{itemize}
     \item Fråga 1: Vilken roll spelar fotografi i ditt vardagsliv?
     \item Fråga 2: Har du stött på problemet i fråga?
     \item Fråga 3: Skulle du använda detta verktyg om det fanns?
 \end{itemize}
 
+\clearpage
+
 \section{Undersökning och resultat}
-Jacob, fråga 1: ”Numera inte så mycket, men förr; jättemycket. Jag tar dock några bilder per dag med mobilkameran och fotar ibland med en "riktig" kamera, oftast en analog.” \par
-Jacob, fråga 2: ”Nej, men det bygger på att jag inte brukar använda exempelvis spegellös digitalkamera när jag fotar. Dock en tid funderade jag på att skaffa en spegellös digitalkamera just på grund av att man kan använda äldre objektiv, eftersom jag redan har flera. På grund av ekonomiska faktorn köpte jag inte en spegellös digitalkamera.” \par
-Jacob, fråga 3: ”Ja, i det fallet att jag skulle äga en spegellös digitalkamera så skulle det här nog komma väl till hands för att räkna på hur det skulle fungera med mina gamla objektiv.” \par
-Daniel, fråga 1: ”Vardagsliv är väl lite av en överdrift, men jag är med i melodifestivalklubben och fotar ibland för dem på olika evenemang eller tillställningar. Numera är mitt fotograferande mest förlagt till evenemang men foto är fortfarande för mig en viktig hobby.” \par
-Daniel, fråga 2: ”Jag har faktiskt köpt ett 50-220mm objektiv till min fullframe sonykamera, men som egentligen passar ett annat bajonettfäste. Så när jag monterar objektivet med en adapter så kommer jag att få en annorlunda brännvidd än vad objektivet skulle ge på fästet det egentligen passar.” \par
-Daniel, fråga 3: ”När mitt objektiv kommer fram så kommer jag nog att använda det, ja.” \par
+\textbf{Vilken roll spelar fotografi i ditt vardagsliv?}\par
+
+Jacob: ”Numera inte så mycket, men förr; jättemycket. Jag tar dock några bilder
+per dag med mobilkameran och fotar ibland med en "riktig" kamera, oftast en
+analog.”\par
+
+Daniel: ”Vardagsliv är väl lite av en överdrift, men jag är med i
+Melodifestivalklubben och fotar ibland för dem på olika evenemang eller
+tillställningar. Numera är mitt fotograferande mest förlagt till evenemang men
+foto är fortfarande för mig en viktig hobby.”\par
+
+\textbf{Har du stött på problemet i fråga?}\par
+
+Jacob: ”Nej, men det bygger på att jag inte brukar använda exempelvis spegellös
+digitalkamera när jag fotar. Dock en tid funderade jag på att skaffa en sådan
+just på grund av att man kan använda äldre objektiv på den, eftersom jag redan
+har flera. På grund av ekonomiska faktorn köpte jag inte en.”\par
+
+\sloppy
+Daniel: ”Jag har faktiskt köpt ett 50-220mm objektiv till min digitalkamera, men
+som egentligen passar ett annat bajonettfäste. Så när jag monterar objektivet
+med en adapter så kommer jag att få en annorlunda brännvidd än vad objektivet
+skulle ge på fästet det egentligen passar.”\par
+\fussy
+
+\textbf{Skulle du använda detta verktyg om det fanns?}\par
+
+Jacob: ”Ja, i det fallet att jag skulle äga en spegellös digitalkamera så
+skulle det här nog komma väl till hands för att räkna på hur det skulle fungera
+med mina gamla objektiv.”\par
+
+Daniel: ”När mitt objektiv kommer fram så kommer jag nog att använda det, ja.”
+\par
+
 \bigskip
-Sammanfattat så har Jacob ett tydligt fotointresse och var ett tag inne på att köpa en spegellös digitalkamera som han skulle kunna sätta sina äldre objektiv på. Han säger att om han hade gjort det så skulle verktyget komma till användning. Daniel har ett likvärdigt fotointresse och fotar ibland på evenemang som press. Han har köpt ett nytt objektiv till sin digitalkamera som passar ett annat fäste, och när han använder en adapter så kommer han att få en annan brännvidd. Han säger att när hans objektiv kommer fram så kommer han nog[sic] att använda verktyget. \par
+\sloppy
+Resultatet av undersökningen är att Jacob har ett tydligt fotointresse och var
+ett tag inne på att köpa en spegellös digitalkamera som han skulle kunna sätta
+sina äldre objektiv på. Han säger att om han hade gjort det så skulle verktyget
+komma till användning.\par
+
+Daniel har ett likvärdigt fotointresse och fotar ibland på evenemang som press.
+Han har köpt ett nytt objektiv till sin digitalkamera som passar ett annat
+fäste, och när han använder en adapter så kommer han att få en annan brännvidd.
+Han säger att när hans objektiv kommer fram så kommer han nog[sic] att använda
+verktyget. \par
+\fussy
+
+\section{Analys och diskussion}
+\sloppy
+Intervjuobjekten har ett vardagligt intresse för fotografi, både som hobby och
+mer professionellt. De har därför varit relevanta att fråga för att de har
+tidigare kunskap i området. Dessutom så har de, som sagt, tagit examen från
+NTI-Gymnasiet Stockholm inom estet med fotografisk inriktning. \par
+
+Eftersom att de har visat intresse för verktygen så anser jag att det finns en
+rimlig anledning att utveckla det. De båda skulle använda verktyget för att
+förenkla sitt arbete inom fotografi. Jacob skulle kunna använda det om han hade
+köpt en digitalkamera som han kan använda sina gamla objektiv på. I det fallet
+att han söka jobb som exempelvis porträttfotograf skulle allt detta gå bra ihop;
+gamla objektiv används ofta av porträttfotografer för de speciella effekter som
+de ger. Även Daniel, som faktiskt har köpt ett nytt objektiv, kommer att kunna
+få nytta av verktyget när han ska använda objektivet på sin digitalkamera. Detta
+kommer att vara relevant i den professionella situationen att han fotar på
+evenemang för exempelvis Melodifestivalklubben.\par
+
+Det som har uppmanat utvecklingen av detta verktyg är att jag själv har stött på
+problemet som det löser; att använda ett objektiv som egentligen inte passar på
+en kamera och försöka lista ut vilken brännvidd och bländare man kommer få.
+Att göra detta manuellt med en miniräknare är ett grovgöra, och en räknare
+underlättar massivt.\par
+
+Det finns en "konkurrent" till mitt verktyg som jag känner till, och det är
+\emph{mmCalc}.\footnote{mmcalc.com} Jag brukade använda \emph{mmCalc} tills
+jag kände att den inte räckte för mina behov längre. Detta leder oss till den
+största {(första?)} fördelen som verktyget jag själv utvecklat har, och det
+är att det går att ändra referensformatet. På \emph{mmCalc} är
+referensformatet låst på 35mm (36x24mm) vilket naturligtvis försvårar om man
+ska använda sitt objektiv på något annat än en kamera med den sensorstorleken.
+För att förenkla; det enda som kan räknas ut på \emph{mmCalc} är
+35mm-motsvarigheten till ens objektiv. På mitt verktyg går det däremot att välja
+vilket referensformat som helst, så om du exempelvis ska använda ett objektiv
+för 35mm-sensorer på en kamera med en APS-sensor så går det utan problem att
+räkna på. En annan, mindre fördel är att det steglöst går att steglöst
+specificera bländartal. På \emph{mmCalc} finns det endast ett fast antal
+bländartal att välja på, mellan f/0.7 och f/32.\par
+
+En nackdel, dock, är att det inte går att välja telekonverter eller 
+vidvinkelkonverter i mitt verktyg. Dessa innebär ett tillbehör som skruvas
+fast mellan kameran och objektivet, som kan antingen förlänga (tele) eller
+förkorta (vidvinkel) brännvidden. Detta är användbart om man har ett ett fast
+objektiv men vill ha det mer/mindre inzoomat.\footnote{Poggers is not academic
+language}\par
+
+\bigskip
+\fussy
 
 \bigskip
 \bigskip
 \bigskip
 \bigskip
+
+\hl{Anteckningar, ignorera:}\par
 \title{Problem}
 \begin{outline}
     \1 Läsa CSV till json genom react
@@ -94,6 +229,14 @@ Sammanfattat så har Jacob ett tydligt fotointresse och var ett tag inne på att
         \2 Lokal testing - browser requests till localhost bryter mot no-cors
         \2 Lösning: tog bort backend
     \1 eval() = farligt
+\end{outline}
+\bigskip
+\title{Todo}
+\begin{outline}
+    \1 Utveckla undersökning, gör fler intervjuer
+    \1 Utveckla frågorna i frågeställningen *
+    \1 Utveckla metoder
+    \1 Fixa inledningen *
 \end{outline}
 
 \end{document}

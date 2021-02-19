@@ -51,6 +51,7 @@ rapport/*.log
 rapport/*.pdf
 rapport/*.synctex.gz
 rapport/*.toc
+rapport/*.out
 
 # misc
 session.vim
