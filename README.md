@@ -1,5 +1,9 @@
 # Gymnasiearbete - CropFactorCalculator
 
+## Disclaimer
+
+This is a school project. No shade is meant to be thrown at other tools of similar nature. It is simply for the sake of argument, and is necessary for this assignment.
+
 ## Todo
 
 &#9744; Prettify calculator output
