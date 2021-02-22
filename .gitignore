@@ -38,11 +38,6 @@ client/yarn-error.log*
 
 # end of Client
 
-# Sublime Misc
-
-cfc-gya.sublime-project
-cfc-gya.sublime-workspace
-
 # Report
 rapport/*.aux
 rapport/*.fdb_latexmk
