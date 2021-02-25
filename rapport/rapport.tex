@@ -185,7 +185,25 @@ Utöver detta så har verktyget jämförts med liknande verktyg som redan finns.
 som har jämförts är vilken input/output som finns tillgängliga, samt hur
 informativt och intuitivt detta är att använda/läsa. I undersökningen finns
 skärmbilder av verktygen samt en skriftlig överblick över vilken funktionalitet
-som till synes finns tillgänglig för respektive verktyg.
+som till synes finns tillgänglig för respektive verktyg.\par
+
+\sloppy
+Verktyget som har nämnts flera gånger i denna rapport,
+\emph{CropFactorCalculator}, är en hemsida som har byggts i ramverket ReactJS,
+som fungerar på det sättet att det förvandlar HTML-taggar till något mer
+abstrakt, nämligen en Javascript-funktion. Detta tillåter att man kan konstruera
+egna "komponenter", som är en grupp av element, genom att skriva funktioner för
+dem. Dessa komponenter skriv i separata filer, och inkluderas med
+\texttt{import} varpå de kan anropas med vanlig HTML-syntax
+(e.g. \texttt{<MinKomponent>}). HTML-egenskaper som komponenten anropas med kan
+kommas åt i funktionen genom variabeln \texttt{props}. Funktionen returnerar
+sedan ett HTML-kodblock, som kan innehålla flera element, till och med egna
+komponenter (d.v.s. att komponenter kan nästlas). Detta gör att man kan göra, i
+praktiken, väldigt avancerade skräddarsydda HTML-element, som dessutom kan
+återanvändas. Ett exempel på detta i verktyget är dropdown-menyerna, som läser
+in alternativ från en CSV-fil och returnerar en \texttt{<select>} populerad med
+\texttt{<option>}s skapade utifrån CSV-filens rader.
+\fussy
 
 \clearpage
 
