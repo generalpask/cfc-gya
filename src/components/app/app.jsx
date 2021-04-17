@@ -77,7 +77,7 @@ class App extends React.Component {
                         <CalcForm className="calcForm" getData={this.handleData} getSubmit={this.handleSubmit} />
                     </div>
                 </div>
-                <div className={this.state.done ? "resultWrapper" : "resultWrapper"} ref={this.resultWrapper}>
+                <div className={this.state.done ? "resultWrapper" : "resultWrapper hidden"} ref={this.resultWrapper}>
                     <Result className={this.state.done ? "result" : "result"} ref={this.Result} state={this.state.result} />
                 </div>
             </>
