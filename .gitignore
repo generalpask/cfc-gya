@@ -43,7 +43,6 @@ rapport/*.aux
 rapport/*.fdb_latexmk
 rapport/*.fls
 rapport/*.log
-rapport/*.pdf
 rapport/*.synctex.gz
 rapport/*.toc
 rapport/*.out
